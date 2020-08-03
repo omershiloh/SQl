@@ -246,8 +246,8 @@ alter table Search_Archive
 	ADD CONSTRAINT PK_SearchArc PRIMARY KEY (IP_Address,DT)
 
 
-	---------------------------------quaries---------------------------------------
-	------------------------------regular quaries----------------------------------
+	---------------------------------queries---------------------------------------
+	------------------------------regular queries----------------------------------
 select  FullName = [First-Name]+' '+[Last-Name],Brand,Products.SKU
 from Products join Reviews on Products.SKU=Reviews.SKU Join Customers on [Email-Reviewer]=Customers.Email
 where Rank=5 and category ='Rum'
@@ -261,7 +261,7 @@ join Customers as C on O.Email=C.Email
 GROUP BY O.Email,[First-Name],[Last-Name],O.[Order-ID], [CC-Number],[Expiration Date],CVV
 Having Sum(Price)>5000
 ORDER BY Total_Price Desc
--------------------------------nested quaries------------------------------------
+-------------------------------nested queries------------------------------------
 select FullName = [First-Name]+' '+[Last-Name],O.Email,O.[Order-ID], O.[CC-Number],[Expiration Date],CVV, DayToReturn=14-abs(DATEDIFF(day,GETDATE(),O.[Order-Date]))
 from ( select [Order-ID],Email,[Order-Date],[CC-Number]
 		from  Orders
@@ -279,7 +279,7 @@ where Country<>'Netherlands'
 								WHERE Country='Netherlands')
 	order by   NumOfOrders DESC
 
------------------------advanced quaries-----------------------------------------
+-----------------------advanced queries-----------------------------------------
 alter table Products add  popularity varchar(30)
 update Products
 set popularity=(CASE
@@ -443,7 +443,7 @@ AS
 	insert into Search_Archive
 	values (@IP_Address, @DT, @search_word, @search_time);
 
-------------------mixed querie--------------
+------------------mixed query--------------
 alter TRIGGER 	Password_archive_New --add the first password to the pass archive
 	ON 			 Registered_Customer
 	FOR 		INSERT,update
